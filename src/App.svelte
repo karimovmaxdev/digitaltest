@@ -61,7 +61,7 @@
     allDays.unshift({ date: formatedTempDate.trim(), contr: 0 });
   }
 
-  const currentMonth = dateIsNow.getMonth();
+  const currentMonth = dateIsNow.getMonth() - 1;
   const lastMonth = currentMonth + 1;
   console.log(currentMonth);
   console.log(lastMonth);
@@ -157,7 +157,7 @@
   .month-box {
     display: flex;
     justify-content: space-between;
-    padding-left: 20px;
+    padding-left: 40px;
     width: 894px;
   }
 
