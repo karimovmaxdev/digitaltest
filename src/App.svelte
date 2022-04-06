@@ -1,86 +1,12 @@
 <script>
-  async function getDates() {
-    const response = await fetch(
-      "https://test.digitalpartnersglobal.com/test/calendar.json"
-    );
-    const dates = await response.json();
+  import { getDates } from "./service/fetchAPI";
+  import { allWeekdays } from "./constsants/constants";
+  import { allDates, correctMonths } from "./dateCreator";
 
-    for (const [key, value] of Object.entries(dates)) {
-      const stringDate = new Date(key);
-      const formatedDate = `
-    	${stringDate.getFullYear()}-${
-        stringDate.getMonth() + 1
-      }-${stringDate.getDate()}
-    `.trim();
+  const allDays = allDates();
+  const allMonth = correctMonths();
 
-      const findedObject = allDays.find((it) => it.date == formatedDate);
-      if (findedObject !== undefined) {
-        findedObject.contr = value;
-      }
-    }
-
-    return allDays;
-  }
-  const allWeekdays = ["пн", "ср", "пт"];
-
-  const calendar = {
-    0: "Янв.",
-    1: "Февр.",
-    2: "Март",
-    3: "Апр.",
-    4: "Май",
-    5: "Июнь",
-    6: "Июль",
-    7: "Авг.",
-    8: "Сент.",
-    9: "Окт.",
-    10: "Нояб.",
-    11: "Дек.",
-  };
-
-  //  массив с датами
-  const allDays = [];
-  //   массиви для отображения месяцев
-  const allMonth = [];
-
-  //   получаем сегодшянюю дату в формате хххх-хх-хх и добавляем ее в массив дат
-  let nowMiliseconds = Date.now();
-  const dateIsNow = new Date(nowMiliseconds);
-  const formatedDate = `
-  	${dateIsNow.getFullYear()}-${dateIsNow.getMonth() + 1}-${dateIsNow.getDate()}
-  `;
-  allDays.push({ date: formatedDate.trim(), contr: 0 });
-
-  //   добавляем в массив все дни начиная с сегодняшнего в обраном порядке
-  for (let i = 356; i !== 0; i--) {
-    nowMiliseconds = nowMiliseconds - 86400000;
-    const tempDate = new Date(nowMiliseconds);
-    const formatedTempDate = `
-		${tempDate.getFullYear()}-${tempDate.getMonth() + 1}-${tempDate.getDate()}
-	`;
-    allDays.unshift({ date: formatedTempDate.trim(), contr: 0 });
-  }
-
-  // корректное наполненеи массива с месяцами, для дальнейшей отрисовки
-  const currentMonth = dateIsNow.getMonth() - 1;
-  const lastMonth = currentMonth + 1;
-
-  for (let i = currentMonth; i !== lastMonth; i--) {
-    if (i - 1 === lastMonth) {
-      allMonth.push(calendar[i]);
-      allMonth.push(calendar[i - 1]);
-      break;
-    }
-    if (i === 0) {
-      allMonth.push(calendar[i]);
-      i = 11;
-    }
-    allMonth.push(calendar[i]);
-  }
-  allMonth.reverse();
-  console.log(allMonth);
-
-  // функция вешает нужный класс по условию
+  // функция вешает нужный класс на ячейку, по условию
   function classNameSwitcher(item) {
     if (item.contr > 30) {
       return "cell cell30";
@@ -116,7 +42,7 @@
         {/each}
       </div>
 
-      {#await getDates()}
+      {#await getDates(allDays)}
         <p>...waiting</p>
       {:then dates}
         <div class="box">
@@ -125,7 +51,6 @@
               <p class="info">
                 {item.contr} contributions
                 <span class="info-text">{item.date}</span>
-                <!-- <span class="info-logo" /> -->
                 <svg
                   class="info-logo"
                   width="9"
@@ -254,7 +179,7 @@
 
   .info-text {
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     color: #7c7c7c;
   }
 
