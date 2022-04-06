@@ -4,7 +4,7 @@ export function allDates() {
     const allDays = []
      //   получаем сегодшянюю дату в формате хххх-хх-хх и добавляем ее в массив дат
     let nowMiliseconds = Date.now();
-    const dateIsNow = new Date(nowMiliseconds);
+    const dateIsNow = new Date();
     let startingDay = 356 - (7 - dateIsNow.getDay());
 
     const formatedDate = `
@@ -29,8 +29,8 @@ export function allDates() {
 export function correctMonths() {
   // корректное наполненеи массива с месяцами, для дальнейшей отрисовки
   const allMonth = []
-  let nowMiliseconds = Date.now();
-  const dateIsNow = new Date(nowMiliseconds);
+  const dateIsNow = new Date();
+  
 
   const currentMonth = dateIsNow.getMonth() - 1;
   const lastMonth = currentMonth + 1;
