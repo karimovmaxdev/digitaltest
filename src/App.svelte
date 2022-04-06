@@ -61,6 +61,26 @@
     allDays.unshift({ date: formatedTempDate.trim(), contr: 0 });
   }
 
+  const currentMonth = dateIsNow.getMonth();
+  const lastMonth = currentMonth + 1;
+  console.log(currentMonth);
+  console.log(lastMonth);
+
+  for (let i = currentMonth; i !== lastMonth; i--) {
+    if (i - 1 === lastMonth) {
+      allMonth.push(calendar[i]);
+      allMonth.push(calendar[i - 1]);
+      break;
+    }
+    if (i === 0) {
+      allMonth.push(calendar[i]);
+      i = 11;
+    }
+    allMonth.push(calendar[i]);
+  }
+  allMonth.reverse();
+  console.log(allMonth);
+
   // функция вешает нужный класс по условию
   function classNameSwitcher(item) {
     if (item.contr > 30) {
@@ -130,7 +150,7 @@
 
 <style>
   .main-box {
-    margin: 0 auto;
+    margin: 50px auto;
     width: 894px;
   }
 
