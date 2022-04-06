@@ -27,7 +27,6 @@
 
   function mouseMoveHandler(e) {
     const target = e.target;
-
     if (target.classList.length >= 2) {
       target.classList.toggle("cellIsHover");
     }
@@ -113,6 +112,7 @@
   }
 
   .months {
+    font-size: 12px;
     color: #959494;
   }
 
@@ -121,15 +121,15 @@
   }
 
   .weekdays-box {
-    height: 85px;
+    margin-right: 5px;
   }
   .week-days {
     display: flex;
     align-items: center;
     width: 15px;
     height: 15px;
-    margin: 1px;
-    margin-right: 5px;
+    margin: 1px 0px 1px 0px;
+    font-size: 12px;
     color: #959494;
   }
 
@@ -137,7 +137,6 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    /* width: 894px; */
     height: 120px;
   }
 
@@ -181,6 +180,7 @@
   .grade-text {
     height: 25px;
     margin-right: 10px;
+    font-size: 12px;
     color: #959494;
   }
 

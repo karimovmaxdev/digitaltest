@@ -1,4 +1,4 @@
-  export const allWeekdays = ["пн", '', "ср", '', "пт", '', ''];
+  export const allWeekdays = ["Пн", '', "Ср", '', "Пт", '', ''];
 
   export const calendar = {
     0: "Янв.",
