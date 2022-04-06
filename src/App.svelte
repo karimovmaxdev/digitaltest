@@ -122,6 +122,8 @@
 
   .weekdays-box {
     margin-right: 5px;
+    display: flex;
+    flex-direction: column;
   }
   .week-days {
     display: flex;
