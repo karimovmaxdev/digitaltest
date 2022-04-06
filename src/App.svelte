@@ -164,6 +164,7 @@
     margin: 0;
     width: 145px;
     height: 42px;
+    pointer-events: none;
 
     bottom: calc(100% + 5px);
     right: 50%;
