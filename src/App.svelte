@@ -24,6 +24,14 @@
     }
     return "cell";
   }
+
+  function mouseMoveHandler(e) {
+    const target = e.target;
+
+    if (target.classList.length >= 2) {
+      target.classList.toggle("cellIsHover");
+    }
+  }
 </script>
 
 <main>
@@ -37,7 +45,11 @@
     <div class="calendar-box">
       <div class="weekdays-box">
         {#each allWeekdays as weekDay}
-          <div class="week-days">{weekDay}</div>
+          <div class="week-days">
+            <span class="week-days-text">
+              {weekDay}
+            </span>
+          </div>
         {/each}
       </div>
 
@@ -46,7 +58,11 @@
       {:then dates}
         <div class="box">
           {#each dates as item}
-            <div class={classNameSwitcher(item)}>
+            <div
+              on:mouseenter={mouseMoveHandler}
+              on:mouseleave={mouseMoveHandler}
+              class={classNameSwitcher(item)}
+            >
               <p class="info">
                 {item.contr} contributions
                 <span class="info-text">{item.date}</span>
@@ -73,13 +89,13 @@
     </div>
 
     <div class="grade">
-      <span class="grade-text">меньше</span>
+      <span class="grade-text">Меньше</span>
       <div class="cell" />
       <div class="cell cell9" />
       <div class="cell cell19" />
       <div class="cell cell29" />
       <div class="cell cell30" />
-      <span class="grade-text">больше</span>
+      <span class="grade-text">Больше</span>
     </div>
   </div>
 </main>
@@ -87,37 +103,52 @@
 <style>
   .main-box {
     margin: 50px auto;
-    width: 894px;
+    width: 900px;
   }
 
   .month-box {
     display: flex;
     justify-content: space-between;
-    padding-left: 40px;
-    width: 894px;
+    padding: 0 40px;
+  }
+
+  .months {
+    color: #959494;
   }
 
   .calendar-box {
     display: flex;
   }
 
+  .weekdays-box {
+    height: 85px;
+  }
   .week-days {
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    margin-right: 5px;
+    color: #959494;
   }
 
   .box {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 894px;
-    height: 145px;
+    /* width: 894px; */
+    height: 120px;
   }
 
   .cell {
     position: relative;
     width: 15px;
     height: 15px;
-    margin: 2px;
+    margin: 1px;
+    background-color: #ededed;
+  }
+  .cellIsHover {
     background-color: #ededed;
   }
 
@@ -150,6 +181,7 @@
   .grade-text {
     height: 25px;
     margin-right: 10px;
+    color: #959494;
   }
 
   .grade-text:last-child {
@@ -191,7 +223,7 @@
   }
 
   .cell:hover {
-    outline: 1px solid black;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
   }
 
   .cell9:hover .info {
