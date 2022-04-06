@@ -38,12 +38,15 @@ export function correctMonths() {
       allMonth.push(calendar[i - 1]);
       break;
     }
+
     if (i === 0) {
       allMonth.push(calendar[i]);
       i = 11;
     }
+
     allMonth.push(calendar[i]);
   }
+  
     allMonth.reverse();
     return allMonth
 }
