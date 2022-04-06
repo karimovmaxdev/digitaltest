@@ -14,7 +14,7 @@ export async function getDates(staticDates) {
       if (findedObject !== undefined) {
         findedObject.contr = value;
       }
-      }
+    }
       
 
     return staticDates;
