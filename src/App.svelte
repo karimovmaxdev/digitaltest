@@ -61,26 +61,22 @@
     allDays.unshift({ date: formatedTempDate.trim(), contr: 0 });
   }
 
-  //   //   наполняем массив с месяцами, для корректной отрисовки
-  //   const currentMonth = dateIsNow.getMonth();
-  //   const latestMonth = currentMonth + 1;
-
   // функция вешает нужный класс по условию
   function classNameSwitcher(item) {
     if (item.contr > 30) {
-      return "cell30";
+      return "cell cell30";
     }
 
     if (item.contr > 19) {
-      return "cell29";
+      return "cell cell29";
     }
 
     if (item.contr > 9) {
-      return "cell19";
+      return "cell cell19";
     }
 
     if (item.contr > 0 && item.contr < 9) {
-      return "cell9";
+      return "cell cell9";
     }
     return "cell";
   }
@@ -123,10 +119,10 @@
     <div class="grade">
       <span>меньше</span>
       <div class="cell" />
-      <div class="cell9" />
-      <div class="cell19" />
-      <div class="cell29" />
-      <div class="cell30" />
+      <div class="cell cell9" />
+      <div class="cell cell19" />
+      <div class="cell cell29" />
+      <div class="cell cell30" />
       <span>больше</span>
     </div>
   </div>
@@ -171,33 +167,21 @@
 
   .cell9 {
     position: relative;
-    width: 15px;
-    height: 15px;
-    margin: 2px;
     background-color: #acd5f2;
   }
 
   .cell19 {
     position: relative;
-    width: 15px;
-    height: 15px;
-    margin: 2px;
     background-color: #7fa8c9;
   }
 
   .cell29 {
     position: relative;
-    width: 15px;
-    height: 15px;
-    margin: 2px;
     background-color: #527ba0;
   }
 
   .cell30 {
     position: relative;
-    width: 15px;
-    height: 15px;
-    margin: 2px;
     background-color: #254e77;
   }
 
@@ -232,7 +216,7 @@
   }
 
   .cell:hover {
-    outline: 1px solid red;
+    outline: 1px solid black;
   }
 
   .cell9:hover .info {
