@@ -61,10 +61,9 @@
     allDays.unshift({ date: formatedTempDate.trim(), contr: 0 });
   }
 
+  // корректное наполненеи массива с месяцами, для дальнейшей отрисовки
   const currentMonth = dateIsNow.getMonth() - 1;
   const lastMonth = currentMonth + 1;
-  console.log(currentMonth);
-  console.log(lastMonth);
 
   for (let i = currentMonth; i !== lastMonth; i--) {
     if (i - 1 === lastMonth) {
@@ -100,7 +99,6 @@
     }
     return "cell";
   }
-  console.log(allDays);
 </script>
 
 <main>
@@ -126,7 +124,21 @@
             <div class={classNameSwitcher(item)}>
               <p class="info">
                 {item.contr} contributions
-                <br />{item.date}
+                <span class="info-text">{item.date}</span>
+                <!-- <span class="info-logo" /> -->
+                <svg
+                  class="info-logo"
+                  width="9"
+                  height="6"
+                  viewBox="0 0 9 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.5 6L0.169873 1.38009e-07L8.83013 8.95112e-07L4.5 6Z"
+                    fill="black"
+                  />
+                </svg>
               </p>
             </div>
           {/each}
@@ -137,13 +149,13 @@
     </div>
 
     <div class="grade">
-      <span>меньше</span>
+      <span class="grade-text">меньше</span>
       <div class="cell" />
       <div class="cell cell9" />
       <div class="cell cell19" />
       <div class="cell cell29" />
       <div class="cell cell30" />
-      <span>больше</span>
+      <span class="grade-text">больше</span>
     </div>
   </div>
 </main>
@@ -211,28 +223,46 @@
     padding-left: 20px;
   }
 
-  span {
+  .grade-text {
     height: 25px;
     margin-right: 10px;
   }
 
-  span:last-child {
+  .grade-text:last-child {
     margin-left: 10px;
   }
 
   .info {
-    display: none;
     position: absolute;
+    display: none;
+    padding: 5px 0 0 0;
+    margin: 0;
+    width: 145px;
+    height: 42px;
+
     bottom: calc(100% + 5px);
     right: 50%;
     transform: translate(50%);
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 175px;
-    height: 42px;
+
     color: white;
     background-color: black;
+
+    text-align: center;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+
+  .info-text {
+    display: block;
+    font-size: 10px;
+    color: #7c7c7c;
+  }
+
+  .info-logo {
+    position: absolute;
+    right: 50%;
+    bottom: -5px;
+    transform: translate(50%);
   }
 
   .cell:hover {
