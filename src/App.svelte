@@ -177,10 +177,10 @@
     display: flex;
     align-items: center;
     padding-left: 20px;
+    margin-top: 15px;
   }
 
   .grade-text {
-    height: 25px;
     margin-right: 10px;
     font-size: 12px;
     color: #959494;
