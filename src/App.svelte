@@ -109,10 +109,12 @@
   .month-box {
     display: flex;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 15px;
   }
 
   .months {
+    width: 68px;
+    text-align: center;
     font-size: 12px;
     color: #959494;
   }
