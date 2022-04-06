@@ -5,6 +5,7 @@
 
   const allDays = allDates();
   const allMonth = correctMonths();
+
   // функция вешает нужный класс на ячейку, по условию
   function classNameSwitcher(item) {
     if (item > 30) {
