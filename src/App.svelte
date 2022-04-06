@@ -64,7 +64,7 @@
               class={classNameSwitcher(item[1])}
             >
               <p class="info">
-                {item.contr} contributions
+                {item[1]} contributions
                 <span class="info-text">{item[0]}</span>
                 <svg
                   class="info-logo"
