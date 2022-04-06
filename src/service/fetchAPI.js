@@ -9,13 +9,14 @@ export async function getDates(staticDates) {
     for (const [key, value] of Object.entries(dates)) {
       const stringDate = new Date(key);
       const formatedDate = dateFormatter(stringDate)
-      
-      const findedObject = staticDates.find((it) => it.date == formatedDate);
-      if (findedObject !== undefined) {
-        findedObject.contr = value;
+
+      if (staticDates[formatedDate] === undefined) {
+        continue
       }
+      
+      staticDates[formatedDate] = value
     }
       
-
-    return staticDates;
+  const result = Object.entries(staticDates).reverse()
+    return result;
   }

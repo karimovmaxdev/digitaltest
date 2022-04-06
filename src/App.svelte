@@ -7,19 +7,19 @@
   const allMonth = correctMonths();
   // функция вешает нужный класс на ячейку, по условию
   function classNameSwitcher(item) {
-    if (item.contr > 30) {
+    if (item > 30) {
       return "cell cell30";
     }
 
-    if (item.contr > 19) {
+    if (item > 19) {
       return "cell cell29";
     }
 
-    if (item.contr > 9) {
+    if (item > 9) {
       return "cell cell19";
     }
 
-    if (item.contr > 0 && item.contr < 9) {
+    if (item > 0 && item < 9) {
       return "cell cell9";
     }
     return "cell";
@@ -60,11 +60,11 @@
             <div
               on:mouseenter={mouseMoveHandler}
               on:mouseleave={mouseMoveHandler}
-              class={classNameSwitcher(item)}
+              class={classNameSwitcher(item[1])}
             >
               <p class="info">
                 {item.contr} contributions
-                <span class="info-text">{item.date}</span>
+                <span class="info-text">{item[0]}</span>
                 <svg
                   class="info-logo"
                   width="9"

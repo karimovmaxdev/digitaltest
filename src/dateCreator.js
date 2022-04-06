@@ -1,22 +1,22 @@
   import { calendar } from "./constsants/constants";
 
-  // функция возвращает массив дат
+  // функция возвращает объект дат
 export function allDates() {
-  //   получаем сегодшянюю дату добавляем ее в массив дат
-  const allDays = []
+  //   получаем сегодшянюю дату добавляем ее в объект дат
+  const allDays = {}
   let nowMiliseconds = Date.now();
   const dateIsNow = new Date();
   let startingDay = 356 - (7 - dateIsNow.getDay());
   
   const formatedDate = dateFormatter(dateIsNow)
-  allDays.push({ date: formatedDate, contr: 0 });
-  //   добавляем в массив все дни начиная с сегодняшнего в обраном порядке
+  allDays[formatedDate] = 0
+  //   добавляем в объект все дни начиная с сегодняшнего в обраном порядке
     
   for (let i = startingDay; i !== 0; i--) {
     nowMiliseconds = nowMiliseconds - 86400000;
     const tempDate = new Date(nowMiliseconds);
     const formatedDate = dateFormatter(tempDate)
-     allDays.unshift({ date: formatedDate, contr: 0 });
+    allDays[formatedDate] = 0
   }
         
     return allDays
